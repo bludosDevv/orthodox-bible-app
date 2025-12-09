@@ -7,7 +7,6 @@
   "framework": "static",
   "env": {},
   "regions": ["sfo1"],
-  "functions": {},
   "routes": [
     {
       "src": "/.*",
