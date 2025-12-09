@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orthodox Patristic Bible - Complete NKJV with Church Father Commentary</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&family=Lora:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Content Container -->
+    <div class="app-container">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="page-content">
+                <!-- Daily Streak -->
+                <div class="daily-streak-card">
+                    <div class="streak-icon">🔥</div>
+                    <div class="streak-info">
+                        <div class="streak-label">Reading Streak</div>
+                        <div class="streak-count" id="streakCount">7</div>
+                        <div class="streak-days">Days</div>
+                    </div>
+                </div>
+
+                <!-- Daily Bible Verse -->
+                <section class="daily-verse-section">
+                    <h2>Daily Verse</h2>
+                    <div class="verse-card glass-effect">
+                        <div class="verse-icon">✨</div>
+                        <p class="verse-text" id="dailyVerseText">"In the beginning was the Word, and the Word was with God, and the Word was God." - John 1:1</p>
+                        <p class="verse-reference" id="dailyVerseRef">John 1:1</p>
+                    </div>
+                </section>
+
+                <!-- Daily Church Father Quote -->
+                <section class="daily-quote-section">
+                    <h2>Daily Wisdom</h2>
+                    <div class="quote-card glass-effect">
+                        <div class="quote-icon">✝️</div>
+                        <p class="quote-text" id="dailyQuoteText">"God became man so that man might become god." - Saint Athanasius</p>
+                        <p class="quote-author" id="dailyQuoteAuthor">Saint Athanasius of Alexandria</p>
+                    </div>
+                </section>
+
+                <!-- Daily Book Recommendations -->
+                <section class="recommendations-section">
+                    <h2>Recommended Reading</h2>
+                    <div class="recommendations-grid">
+                        <div class="recommendation-card glass-effect">
+                            <div class="book-icon">📖</div>
+                            <h3>Orthodox Dogmatic Theology</h3>
+                            <p>By Metropolitan Macarius</p>
+                            <a href="#" class="pdf-link">📥 Download PDF</a>
+                        </div>
+                        <div class="recommendation-card glass-effect">
+                            <div class="book-icon">📚</div>
+                            <h3>On the Incarnation</h3>
+                            <p>By Saint Athanasius</p>
+                            <a href="#" class="pdf-link">📥 Download PDF</a>
+                        </div>
+                        <div class="recommendation-card glass-effect">
+                            <div class="book-icon">✍️</div>
+                            <h3>Exact Exposition of the Orthodox Faith</h3>
+                            <p>By Saint John of Damascus</p>
+                            <a href="#" class="pdf-link">📥 Download PDF</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Bible Page -->
+        <div id="bible-page" class="page">
+            <div class="page-content">
+                <div class="bible-header">
+                    <h1>Complete NKJV Bible</h1>
+                    <div class="search-box">
+                        <input type="text" id="bibleSearch" placeholder="Search verses..." class="search-input">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                </div>
+
+                <div class="bible-layout">
+                    <!-- Books Sidebar -->
+                    <div class="books-sidebar glass-effect">
+                        <div class="sidebar-header">
+                            <h3>Books</h3>
+                            <div class="testament-tabs">
+                                <button class="tab-btn active" data-testament="all">All</button>
+                                <button class="tab-btn" data-testament="old">OT</button>
+                                <button class="tab-btn" data-testament="new">NT</button>
+                            </div>
+                        </div>
+                        <div class="books-list" id="booksList"></div>
+                    </div>
+
+                    <!-- Bible Content -->
+                    <div class="bible-content glass-effect">
+                        <div class="chapter-header">
+                            <h2 id="currentBook">Genesis</h2>
+                            <div class="chapter-nav">
+                                <button class="nav-btn" id="prevBtn">← Previous</button>
+                                <select id="chapterSelect" class="chapter-select"></select>
+                                <button class="nav-btn" id="nextBtn">Next →</button>
+                            </div>
+                        </div>
+                        <div class="verses-container" id="versesContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Catechism Page -->
+        <div id="catechism-page" class="page">
+            <div class="page-content">
+                <h1>Orthodox Catechism</h1>
+                <p class="section-subtitle">Theological Works by Church Fathers & Saints</p>
+
+                <div class="catechism-layout">
+                    <div class="catechism-sidebar glass-effect">
+                        <div class="catechism-books" id="catechismBooks"></div>
+                    </div>
+                    <div class="catechism-content glass-effect">
+                        <div id="catechismContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saints Page -->
+        <div id="saints-page" class="page">
+            <div class="page-content">
+                <h1>Orthodox Saints</h1>
+                <p class="section-subtitle">Church Fathers & Venerable Saints</p>
+                <div class="saints-grid" id="saintsGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-page="home-page">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" data-page="bible-page">
+            <span class="nav-icon">📖</span>
+            <span class="nav-label">Bible</span>
+        </button>
+        <button class="nav-item" data-page="catechism-page">
+            <span class="nav-icon">✝️</span>
+            <span class="nav-label">Catechism</span>
+        </button>
+        <button class="nav-item" data-page="saints-page">
+            <span class="nav-icon">⛪</span>
+            <span class="nav-label">Saints</span>
+        </button>
+    </nav>
+
+    <!-- Verse Detail Modal -->
+    <div id="verseModal" class="modal">
+        <div class="modal-content glass-effect">
+            <button class="modal-close">✕</button>
+            <div class="modal-header">
+                <h2 id="modalVerseRef"></h2>
+            </div>
+            <div class="modal-body">
+                <p id="modalVerseText"></p>
+                <div class="patristic-notes">
+                    <h3>Church Father Commentary</h3>
+                    <div id="patristicContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

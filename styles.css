@@ -1,0 +1,941 @@
+/* ============================================
+   ORTHODOX BIBLE - GLASSMORPHISM DESIGN
+   Byzantine Color Palette & Smooth Animations
+   ============================================ */
+
+:root {
+    /* Byzantine Color Palette */
+    --primary-gold: #D4AF37;
+    --primary-purple: #4A148C;
+    --primary-red: #8B0000;
+    --primary-blue: #003366;
+    --primary-dark: #1a1a2e;
+    --primary-light: #f5f5f5;
+    
+    /* Glassmorphism Colors */
+    --glass-light: rgba(255, 255, 255, 0.15);
+    --glass-dark: rgba(20, 20, 40, 0.15);
+    --glass-border: rgba(212, 175, 55, 0.3);
+    
+    /* Text Colors */
+    --text-dark: #2c2c2c;
+    --text-light: #f5f5f5;
+    --text-muted: #888;
+    
+    /* Fonts */
+    --font-serif: 'Crimson Text', 'Lora', serif;
+    --font-sans: 'Poppins', sans-serif;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    --text-dark: #f5f5f5;
+    --text-light: #1a1a2e;
+    --text-muted: #aaa;
+    --glass-light: rgba(20, 20, 40, 0.25);
+    --glass-dark: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8f0 100%);
+    color: var(--text-dark);
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 100%);
+}
+
+/* ============================================
+   GLASSMORPHISM EFFECT
+   ============================================ */
+
+.glass-effect {
+    background: var(--glass-light);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.glass-effect:hover {
+    background: var(--glass-light);
+    box-shadow: 0 12px 48px rgba(212, 175, 55, 0.2);
+    transform: translateY(-2px);
+}
+
+body.dark-mode .glass-effect {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   APP CONTAINER & PAGES
+   ============================================ */
+
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+    min-height: 100vh;
+}
+
+.page {
+    display: none;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-content {
+    padding: 30px 20px;
+}
+
+/* ============================================
+   BOTTOM NAVIGATION BAR
+   ============================================ */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: var(--glass-light);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 2px solid var(--glass-border);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .bottom-nav {
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    color: var(--text-dark);
+}
+
+.nav-item:hover {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(1.1);
+}
+
+.nav-item.active {
+    background: rgba(212, 175, 55, 0.3);
+    color: var(--primary-gold);
+    transform: scale(1.15);
+}
+
+.nav-icon {
+    font-size: 24px;
+    display: block;
+}
+
+.nav-label {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--font-sans);
+}
+
+/* ============================================
+   HOME PAGE STYLES
+   ============================================ */
+
+.daily-streak-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(74, 20, 140, 0.2));
+    border-radius: 20px;
+    border: 2px solid var(--primary-gold);
+    margin-bottom: 30px;
+    animation: slideUp 0.6s ease;
+}
+
+.streak-icon {
+    font-size: 48px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.streak-info {
+    flex: 1;
+}
+
+.streak-label {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.streak-count {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--primary-gold);
+    line-height: 1;
+}
+
+.streak-days {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* Daily Verse Section */
+.daily-verse-section,
+.daily-quote-section,
+.recommendations-section {
+    margin-bottom: 40px;
+    animation: slideUp 0.6s ease;
+}
+
+.daily-verse-section h2,
+.daily-quote-section h2,
+.recommendations-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--primary-purple);
+    font-family: var(--font-serif);
+}
+
+.verse-card,
+.quote-card {
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.verse-card::before,
+.quote-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.verse-icon,
+.quote-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    display: block;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.verse-text,
+.quote-text {
+    font-size: 18px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
+.verse-reference,
+.quote-author {
+    font-size: 14px;
+    color: var(--primary-gold);
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+/* Recommendations Grid */
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.recommendation-card {
+    padding: 25px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-5px);
+}
+
+.book-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.recommendation-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--primary-purple);
+}
+
+.recommendation-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.pdf-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--primary-red));
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.pdf-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* ============================================
+   BIBLE PAGE STYLES
+   ============================================ */
+
+.bible-header {
+    margin-bottom: 30px;
+}
+
+.bible-header h1 {
+    font-size: 36px;
+    color: var(--primary-purple);
+    margin-bottom: 20px;
+    font-family: var(--font-serif);
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid var(--primary-gold);
+    border-radius: 10px;
+    background: var(--glass-light);
+    color: var(--text-dark);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-btn {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--primary-red));
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    transform: scale(1.05);
+}
+
+.bible-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+}
+
+.books-sidebar {
+    padding: 20px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    margin-bottom: 20px;
+}
+
+.sidebar-header h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--primary-purple);
+}
+
+.testament-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 8px 12px;
+    background: transparent;
+    border: 2px solid var(--primary-gold);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background: var(--primary-gold);
+    color: white;
+}
+
+.books-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.book-item {
+    padding: 12px 15px;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.book-item:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--primary-gold);
+}
+
+.book-item.active {
+    background: var(--primary-gold);
+    color: white;
+    font-weight: 600;
+}
+
+.bible-content {
+    padding: 30px;
+}
+
+.chapter-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--primary-gold);
+    padding-bottom: 20px;
+}
+
+.chapter-header h2 {
+    font-size: 32px;
+    color: var(--primary-purple);
+    margin-bottom: 15px;
+    font-family: var(--font-serif);
+}
+
+.chapter-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--primary-red));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.chapter-select {
+    padding: 10px 15px;
+    background: var(--glass-light);
+    border: 2px solid var(--primary-gold);
+    border-radius: 8px;
+    color: var(--text-dark);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    backdrop-filter: blur(10px);
+}
+
+.verses-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.verse {
+    padding: 15px 20px;
+    background: rgba(212, 175, 55, 0.05);
+    border-left: 4px solid var(--primary-gold);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.verse:hover {
+    background: rgba(212, 175, 55, 0.15);
+    transform: translateX(5px);
+}
+
+.verse-number {
+    display: inline-block;
+    font-weight: bold;
+    color: var(--primary-gold);
+    margin-right: 10px;
+    min-width: 40px;
+}
+
+.verse-text {
+    color: var(--text-dark);
+    line-height: 1.8;
+    font-family: var(--font-serif);
+}
+
+/* ============================================
+   CATECHISM PAGE STYLES
+   ============================================ */
+
+.section-subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.catechism-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+}
+
+.catechism-sidebar {
+    padding: 20px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.catechism-books {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.catechism-book {
+    padding: 15px;
+    background: transparent;
+    border: 2px solid var(--glass-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.catechism-book:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--primary-gold);
+}
+
+.catechism-book.active {
+    background: var(--primary-gold);
+    color: white;
+    border-color: var(--primary-gold);
+}
+
+.catechism-book strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.catechism-book p {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.catechism-content {
+    padding: 30px;
+    line-height: 1.8;
+}
+
+.catechism-content h3 {
+    font-size: 24px;
+    color: var(--primary-purple);
+    margin: 25px 0 15px 0;
+    font-family: var(--font-serif);
+}
+
+.catechism-content p {
+    font-size: 16px;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+/* ============================================
+   SAINTS PAGE STYLES
+   ============================================ */
+
+.saints-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.saint-card {
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.6s ease;
+}
+
+.saint-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+.saint-icon {
+    font-size: 64px;
+    margin-bottom: 15px;
+    display: block;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.saint-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary-purple);
+    margin-bottom: 5px;
+    font-family: var(--font-serif);
+}
+
+.saint-title {
+    font-size: 14px;
+    color: var(--primary-gold);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.saint-bio {
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.saint-period {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ============================================
+   MODAL STYLES
+   ============================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 30px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+.modal-header {
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-gold);
+    padding-bottom: 15px;
+}
+
+.modal-header h2 {
+    color: var(--primary-purple);
+    font-family: var(--font-serif);
+}
+
+.modal-body {
+    color: var(--text-dark);
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    font-family: var(--font-serif);
+}
+
+.patristic-notes {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid var(--primary-gold);
+}
+
+.patristic-notes h3 {
+    color: var(--primary-purple);
+    margin-bottom: 15px;
+    font-family: var(--font-serif);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--glass-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-gold);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-red);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .bible-layout,
+    .catechism-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .books-sidebar,
+    .catechism-sidebar {
+        position: static;
+        max-height: none;
+    }
+
+    .saints-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bible-header h1,
+    .daily-verse-section h2,
+    .daily-quote-section h2,
+    .recommendations-section h2 {
+        font-size: 24px;
+    }
+
+    .verse-text,
+    .quote-text {
+        font-size: 16px;
+    }
+
+    .nav-item {
+        padding: 8px 10px;
+    }
+
+    .nav-icon {
+        font-size: 20px;
+    }
+
+    .nav-label {
+        font-size: 10px;
+    }
+
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .daily-streak-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-content {
+        padding: 15px 10px;
+    }
+
+    .bible-header h1 {
+        font-size: 20px;
+    }
+
+    .verse-text,
+    .quote-text {
+        font-size: 14px;
+    }
+
+    .chapter-nav {
+        flex-direction: column;
+    }
+
+    .nav-btn,
+    .chapter-select {
+        width: 100%;
+    }
+
+    .bottom-nav {
+        height: 70px;
+    }
+
+    .app-container {
+        padding-bottom: 90px;
+    }
+}
